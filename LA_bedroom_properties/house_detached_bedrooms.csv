@@ -1,7 +1,4 @@
 Area Name,1,2,3,4+
-ENGLAND AND WALES,9900,186500,1521190,2341030
-ENGLAND,8900,168200,1415420,2199070
-NORTH EAST,200,3990,52770,89500
 County Durham UA,70,1310,13760,19910
 Darlington UA,10,150,2600,4340
 Hartlepool UA,-,70,1900,3900
@@ -9,27 +6,23 @@ Middlesbrough UA,-,60,2110,4380
 Northumberland UA,80,1290,9150,17160
 Redcar and Cleveland UA,10,220,3070,5200
 Stockton-on-Tees UA,10,190,5410,11220
-Tyne and Wear (Met County),30,710,14780,23400
 Gateshead,10,200,2910,3530
 Newcastle upon Tyne,-,120,2650,4690
 North Tyneside,10,120,3330,5690
 South Tyneside,-,90,1820,2690
 Sunderland,10,180,4070,6800
-NORTH WEST,730,14400,162180,247810
 Blackburn with Darwen UA,10,170,2350,3560
 Blackpool UA,10,220,1760,1690
 Cheshire East UA,80,1890,15550,32150
 Cheshire West and Chester UA,60,890,12270,22120
 Halton UA,10,180,3380,5120
 Warrington UA,50,470,5930,10580
-Cumbria,150,2610,14960,20110
 Allerdale,30,510,3120,3770
 Barrow-in-Furness,-,90,1020,1120
 Carlisle,20,480,2980,4550
 Copeland,10,200,1470,2160
 Eden,30,580,2750,3560
 South Lakeland,60,750,3630,4940
-Greater Manchester (Met County),110,2910,51350,66620
 Bolton,10,320,5430,8490
 Bury,10,250,4490,6650
 Manchester,10,190,2850,3020
@@ -40,7 +33,6 @@ Stockport,20,410,9460,11160
 Tameside,10,310,3940,4290
 Trafford,20,220,5780,6770
 Wigan,20,500,8320,11290
-Lancashire,220,3590,31210,51120
 Burnley,-,110,1620,1780
 Chorley,20,360,4020,7320
 Fylde,20,260,2350,4550
@@ -53,19 +45,16 @@ Rossendale,10,200,1570,3110
 South Ribble,30,390,4040,6050
 West Lancashire,30,500,3610,6330
 Wyre,20,430,3490,5390
-Merseyside (Met County),50,1470,23430,34740
 Knowsley,-,100,3020,3990
 Liverpool,10,170,4400,6790
 Sefton,20,490,5100,8840
 St. Helens,10,310,4350,5080
 Wirral,10,400,6560,10050
-YORKSHIRE AND THE HUMBER,710,13220,126260,197260
 East Riding of Yorkshire UA,60,1250,11750,22400
 "Kingston upon Hull, City of UA",10,110,2450,3130
 North East Lincolnshire UA,30,270,3120,5570
 North Lincolnshire UA,20,630,6380,8340
 York UA,30,480,5240,8010
-North Yorkshire,220,3640,22260,38770
 Craven,30,350,1680,2620
 Hambleton,30,480,3580,7780
 Harrogate,60,750,5620,10870
@@ -73,23 +62,19 @@ Richmondshire,40,510,1940,2840
 Ryedale,20,610,2610,3660
 Scarborough,20,540,2850,3650
 Selby,20,420,3980,7350
-South Yorkshire (Met County),80,2320,31180,40370
 Barnsley,20,490,5970,8360
 Doncaster,20,450,7750,10600
 Rotherham,20,470,6420,9070
 Sheffield,30,910,11050,12340
-West Yorkshire (Met County),270,4530,43870,70680
 Bradford,50,690,7460,13240
 Calderdale,60,650,3010,5570
 Kirklees,90,1430,9830,15360
 Leeds,50,980,14650,23270
 Wakefield,20,780,8920,13240
-EAST MIDLANDS,800,20450,199380,249150
 Derby UA,10,630,8620,8950
 Leicester UA,10,310,4050,4830
 Nottingham UA,20,560,8580,4150
 Rutland UA,20,260,2040,3960
-Derbyshire,260,6060,38030,38470
 Amber Valley,30,1400,7370,6410
 Bolsover,10,500,2960,2840
 Chesterfield,10,490,3670,3680
@@ -98,7 +83,6 @@ Erewash,20,580,6070,4240
 High Peak,30,520,2900,4250
 North East Derbyshire,40,770,5100,4630
 South Derbyshire,20,510,5860,7880
-Leicestershire,100,2760,32910,48380
 Blaby,10,270,5390,6640
 Charnwood,30,620,6740,10040
 Harborough,40,470,4740,9940
@@ -106,7 +90,6 @@ Hinckley and Bosworth,10,470,5940,7350
 Melton,10,340,2760,3650
 North West Leicestershire,20,520,5150,7720
 Oadby and Wigston,-,60,2210,3050
-Lincolnshire,150,4090,35840,46000
 Boston,20,430,3460,2830
 East Lindsey,50,1220,6200,7410
 Lincoln,20,180,2190,2640
@@ -114,7 +97,6 @@ North Kesteven,20,510,6310,9470
 South Holland,20,660,6060,5120
 South Kesteven,20,530,6820,11130
 West Lindsey,20,570,4800,7400
-Northamptonshire,140,2380,27300,49060
 Corby,10,90,2160,3350
 Daventry,30,480,3890,8280
 East Northamptonshire,30,440,3780,7480
@@ -122,7 +104,6 @@ Kettering,10,330,4380,5950
 Northampton,20,280,6050,10550
 South Northamptonshire,30,530,4220,9340
 Wellingborough,10,230,2810,4130
-Nottinghamshire,90,3420,42000,45350
 Ashfield,10,450,5460,4520
 Bassetlaw,20,480,4670,7330
 Broxtowe,-,520,7210,4890
@@ -130,12 +111,10 @@ Gedling,10,460,7590,6360
 Mansfield,10,430,4470,4090
 Newark and Sherwood,20,640,5390,8070
 Rushcliffe,20,450,7210,10090
-WEST MIDLANDS,990,21550,192250,237020
 "Herefordshire, County of UA",170,2770,10150,13470
 Shropshire UA,190,3700,16300,21050
 Stoke-on-Trent UA,20,500,5670,4430
 Telford and Wrekin UA,30,680,7060,11100
-Staffordshire,160,4600,42730,50260
 Cannock Chase,-,420,5290,4500
 East Staffordshire,20,620,5150,6900
 Lichfield,20,460,5420,7450
@@ -144,13 +123,11 @@ South Staffordshire,10,560,6240,7870
 Stafford,40,710,7130,9800
 Staffordshire Moorlands,70,1160,5850,4870
 Tamworth,-,120,3410,3820
-Warwickshire,130,2170,21500,33790
 North Warwickshire,10,270,2870,2920
 Nuneaton and Bedworth,10,210,5390,5610
 Rugby,30,310,3440,6750
 Stratford-on-Avon,50,930,5870,10220
 Warwick,30,460,3930,8300
-West Midlands (Met County),100,4180,61900,63230
 Birmingham,30,840,15330,17670
 Coventry,10,260,4010,5530
 Dudley,20,1070,13070,9350
@@ -158,27 +135,23 @@ Sandwell,10,610,6200,4330
 Solihull,10,400,7560,14160
 Walsall,10,540,8400,7190
 Wolverhampton,10,470,7330,5000
-Worcestershire,180,2950,26950,39700
 Bromsgrove,20,470,4840,7710
 Malvern Hills,60,890,4100,6000
 Redditch,10,170,3250,4980
 Worcester,20,160,3270,4590
 Wychavon,50,840,6430,11520
 Wyre Forest,30,430,5060,4910
-EAST,1090,23700,185070,332530
 Bedford UA,40,550,4940,11030
 Central Bedfordshire UA,40,830,8890,18460
 Luton UA,10,180,3150,3660
 Peterborough UA,20,580,6200,9760
 Southend-on-Sea UA,30,450,3080,4940
 Thurrock UA,-,150,2200,3760
-Cambridgeshire,140,3220,23010,45230
 Cambridge,20,240,1410,2690
 East Cambridgeshire,20,690,3740,6240
 Fenland,20,710,4940,5500
 Huntingdonshire,30,720,7280,16470
 South Cambridgeshire,50,870,5640,14330
-Essex,270,6080,45420,85820
 Basildon,10,260,3350,9200
 Braintree,30,770,5030,8860
 Brentwood,10,270,2410,5220
@@ -191,7 +164,6 @@ Maldon,20,380,2520,6190
 Rochford,20,360,2710,5670
 Tendring,30,1050,5710,6420
 Uttlesford,40,650,3330,8340
-Hertfordshire,140,2790,25080,55680
 Broxbourne,10,170,1260,3640
 Dacorum,20,430,3190,7640
 East Hertfordshire,30,580,4270,9490
@@ -202,7 +174,6 @@ Stevenage,-,80,1170,2530
 Three Rivers,10,180,2300,5480
 Watford,10,110,1060,2040
 Welwyn Hatfield,20,290,2280,4450
-Norfolk,190,4870,34550,48860
 Breckland,30,750,5980,8670
 Broadland,20,640,6150,9360
 Great Yarmouth,10,320,2630,3390
@@ -210,7 +181,6 @@ King's Lynn and West Norfolk,30,940,5940,8640
 North Norfolk,40,1040,4930,5650
 Norwich,10,140,1950,2530
 South Norfolk,50,1050,6980,10630
-Suffolk,210,4000,28560,45330
 Babergh,50,620,4290,7140
 Forest Heath,20,220,2110,3240
 Ipswich,10,130,2430,2880
@@ -218,8 +188,6 @@ Mid Suffolk,50,1020,5210,8560
 St Edmundsbury,20,600,4260,7190
 Suffolk Coastal,40,870,5720,11140
 Waveney,30,540,4560,5180
-LONDON,420,5370,43190,80190
-Inner London,180,860,2330,6900
 Camden,20,120,170,880
 City of London,0,-,-,-
 Hackney,20,50,80,100
@@ -234,7 +202,6 @@ Southwark,10,50,180,820
 Tower Hamlets,20,20,40,60
 Wandsworth,20,110,290,1530
 Westminster,10,30,60,380
-Outer London,240,4510,40860,73290
 Barking and Dagenham,-,40,240,130
 Barnet,20,280,3510,8600
 Bexley,10,220,1780,2290
@@ -254,7 +221,6 @@ Redbridge,20,120,1110,2290
 Richmond upon Thames,50,270,1560,3650
 Sutton,10,240,2140,4430
 Waltham Forest,-,100,450,410
-SOUTH EAST,1830,34850,270480,485660
 Bracknell Forest UA,20,240,3190,8470
 Brighton and Hove UA,30,540,2730,3980
 Isle of Wight UA,40,1120,5800,5960
@@ -267,18 +233,15 @@ Southampton UA,20,490,5880,3040
 West Berkshire UA,40,680,5460,11660
 Windsor and Maidenhead UA,30,510,4730,10490
 Wokingham UA,30,610,7620,16730
-Buckinghamshire,120,2310,18330,40170
 Aylesbury Vale,50,860,6400,14050
 Chiltern,30,470,3610,9040
 South Bucks,10,270,2660,6920
 Wycombe,30,710,5660,10150
-East Sussex,130,3060,19790,29370
 Eastbourne,10,250,2620,2750
 Hastings,20,220,2120,2960
 Lewes,30,480,3400,4810
 Rother,40,900,4420,5890
 Wealden,40,1210,7230,12970
-Hampshire,260,5690,49220,91780
 Basingstoke and Deane,30,550,5740,12020
 East Hampshire,20,580,4470,10840
 Eastleigh,20,450,5220,8150
@@ -290,7 +253,6 @@ New Forest,60,1440,9180,11240
 Rushmoor,10,190,2420,2910
 Test Valley,30,540,5090,10210
 Winchester,40,590,4140,9560
-Kent,340,5820,38400,69280
 Ashford,40,620,4210,8020
 Canterbury,50,800,4180,7070
 Dartford,10,150,1320,2510
@@ -303,13 +265,11 @@ Swale,30,590,3840,5350
 Thanet,20,460,2910,3770
 Tonbridge and Malling,30,380,3360,7670
 Tunbridge Wells,40,520,3280,6840
-Oxfordshire,260,3270,22200,40390
 Cherwell,50,580,5370,9760
 Oxford,30,230,1490,2360
 South Oxfordshire,60,930,5500,10130
 Vale of White Horse,70,710,5220,10800
 West Oxfordshire,50,810,4610,7340
-Surrey,220,5060,41620,78990
 Elmbridge,30,390,4400,11710
 Epsom and Ewell,10,230,2440,4020
 Guildford,20,690,5670,8510
@@ -321,7 +281,6 @@ Surrey Heath,10,400,3750,9550
 Tandridge,20,450,2990,6480
 Waverley,40,860,5770,10160
 Woking,20,410,3520,6750
-West Sussex,160,3730,27210,44710
 Adur,10,160,1000,1120
 Arun,30,850,5220,7860
 Chichester,50,970,4810,7950
@@ -329,7 +288,6 @@ Crawley,-,60,1910,3370
 Horsham,40,780,5710,10700
 Mid Sussex,30,560,5980,10590
 Worthing,10,350,2570,3120
-SOUTH WEST,2140,30680,183850,279970
 Bath and North East Somerset UA,50,580,4460,7750
 Bournemouth UA,30,860,9740,8000
 "Bristol, City of UA",40,380,3070,4500
@@ -342,7 +300,6 @@ South Gloucestershire UA,60,860,8970,15630
 Swindon UA,10,360,6500,10280
 Torbay UA,30,430,2830,3660
 Wiltshire UA,210,2990,18080,35390
-Devon,430,5920,29210,45660
 East Devon,50,1160,5560,8510
 Exeter,10,260,2080,3310
 Mid Devon,60,580,3250,5740
@@ -351,27 +308,23 @@ South Hams,80,870,3800,6320
 Teignbridge,60,780,4260,7880
 Torridge,50,760,3500,4260
 West Devon,60,660,2410,4100
-Dorset,160,2820,17350,24030
 Christchurch,20,240,2040,1910
 East Dorset,20,450,3430,6840
 North Dorset,40,680,2940,4640
 Purbeck,20,390,1890,2260
 West Dorset,60,810,4690,6290
 Weymouth and Portland,10,250,2360,2090
-Gloucestershire,300,4880,24160,39520
 Cheltenham,20,290,2400,5060
 Cotswold,80,1080,4190,8170
 Forest of Dean,70,1410,5000,5310
 Gloucester,10,190,3640,5790
 Stroud,100,1410,5380,7880
 Tewkesbury,30,500,3550,7310
-Somerset,240,3480,20320,32480
 Mendip,60,830,4050,6660
 Sedgemoor,40,670,4230,7480
 South Somerset,70,1070,6690,9500
 Taunton Deane,40,510,3910,6930
 West Somerset,30,410,1440,1910
-WALES,1010,18300,105760,141970
 Isle of Anglesey / Ynys Mï¿½n,50,800,3530,3820
 Gwynedd / Gwynedd,130,1740,5690,6210
 Conwy / Conwy,60,1100,4980,5230

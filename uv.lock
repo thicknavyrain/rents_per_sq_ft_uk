@@ -185,6 +185,15 @@ wheels = [
 ]
 
 [[package]]
+name = "fuzzywuzzy"
+version = "0.18.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/11/4b/0a002eea91be6048a2b5d53c5f1b4dafd57ba2e36eea961d05086d7c28ce/fuzzywuzzy-0.18.0.tar.gz", hash = "sha256:45016e92264780e58972dca1b3d939ac864b78437422beecebb3095f8efd00e8", size = 28888, upload-time = "2020-02-13T21:06:27.054Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/43/ff/74f23998ad2f93b945c0309f825be92e04e0348e062026998b5eefef4c33/fuzzywuzzy-0.18.0-py2.py3-none-any.whl", hash = "sha256:928244b28db720d1e0ee7587acf660ea49d7e4c632569cad4f1cd7e68a5f0993", size = 18272, upload-time = "2020-02-13T21:06:25.209Z" },
+]
+
+[[package]]
 name = "h11"
 version = "0.16.0"
 source = { registry = "https://pypi.org/simple" }
@@ -200,6 +209,19 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/f1/70/7703c29685631f5a7590aa73f1f1d3fa9a380e654b86af429e0934a32f7d/idna-3.10.tar.gz", hash = "sha256:12f65c9b470abda6dc35cf8e63cc574b1c52b11df2c86030af0ac09b01b13ea9", size = 190490, upload-time = "2024-09-15T18:07:39.745Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/76/c6/c88e154df9c4e1a2a66ccf0005a88dfb2650c1dffb6f5ce603dfbd452ce3/idna-3.10-py3-none-any.whl", hash = "sha256:946d195a0d259cbba61165e88e65941f16e9b36ea6ddb97f00452bae8b1287d3", size = 70442, upload-time = "2024-09-15T18:07:37.964Z" },
+]
+
+[[package]]
+name = "ipfn"
+version = "1.4.4"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "numpy" },
+    { name = "pandas" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/b8/82/acf73d6e8b3877e3b0ace42aad730bd8ac3b7320a70963092cdc6cc85ec9/ipfn-1.4.4.tar.gz", hash = "sha256:bf6b446f9dea53e28481a5cff9461769cba5711542eaebe05e554ac09c832ddd", size = 10909, upload-time = "2021-12-30T22:17:18.544Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/85/d9/98b20dd1b5c66f726fd9c7974b78854c3432ba14d8bc28d388815da50f06/ipfn-1.4.4-py2.py3-none-any.whl", hash = "sha256:a0b5f3c9c5de8c71207cc88f1e51b68135d482a50d7035c58f3e202d33a6b026", size = 7382, upload-time = "2021-12-30T22:17:17.08Z" },
 ]
 
 [[package]]
@@ -795,6 +817,8 @@ source = { virtual = "." }
 dependencies = [
     { name = "black" },
     { name = "flake8" },
+    { name = "fuzzywuzzy" },
+    { name = "ipfn" },
     { name = "marimo" },
     { name = "matplotlib" },
     { name = "pandas" },
@@ -809,6 +833,8 @@ dependencies = [
 requires-dist = [
     { name = "black", specifier = ">=25.1.0" },
     { name = "flake8", specifier = ">=7.3.0" },
+    { name = "fuzzywuzzy", specifier = ">=0.18.0" },
+    { name = "ipfn", specifier = ">=1.4.4" },
     { name = "marimo", specifier = ">=0.14.16" },
     { name = "matplotlib", specifier = ">=3.10.5" },
     { name = "pandas", specifier = ">=2.3.1" },
