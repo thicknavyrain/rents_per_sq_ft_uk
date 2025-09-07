@@ -111,6 +111,7 @@ def _(floorx_summary, pd):
     plt.legend(title="Region of England", bbox_to_anchor=(1.05, 1), loc="upper left")
     plt.grid(True, linestyle="--", alpha=0.6)
     plt.tight_layout()
+    plt.savefig('EHS_foorspace_by_bedroom.png', bbox_inches='tight', dpi=300)
     plt.show()
 
     return clean_beds, order, plot_df, plt
@@ -128,7 +129,7 @@ def _(clean_beds, order, pd, plot_df, plt):
         lower_err = group2["median"] - group2["p25"]
         upper_err = group2["p75"] - group2["median"]
         asym_err = [lower_err, upper_err]
-    
+
         plt.errorbar(
             group2["nbedsx"],
             group2["median"],
