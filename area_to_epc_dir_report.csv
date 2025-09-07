@@ -94,9 +94,9 @@ Boston,domestic-E07000136-Boston,100,boston,boston,no,
 East Lindsey,domestic-E07000137-East-Lindsey,100,east lindsey,east lindsey,no,
 Lincoln,domestic-E07000138-Lincoln,100,lincoln,lincoln,no,
 North Kesteven,domestic-E07000139-North-Kesteven,100,north kesteven,north kesteven,no,
-South Holland,(conflict -> winner: South Holland),100,south holland,south holland,yes,conflict
+South Holland,domestic-E07000140-South-Holland,100,south holland,south holland,no,
 South Kesteven,domestic-E07000141-South-Kesteven,100,south kesteven,south kesteven,no,
-West Lindsey,(conflict -> winner: West Lindsey),100,west lindsey,west lindsey,yes,conflict
+West Lindsey,domestic-E07000142-West-Lindsey,100,west lindsey,west lindsey,no,
 Corby,domestic-E07000150-Corby,100,corby,corby,no,
 Daventry,domestic-E07000151-Daventry,100,daventry,daventry,no,
 East Northamptonshire,domestic-E07000152-East-Northamptonshire,100,east northamptonshire,east northamptonshire,no,
@@ -146,7 +146,7 @@ Central Bedfordshire UA,domestic-E06000056-Central-Bedfordshire,100,central bedf
 Luton UA,domestic-E06000032-Luton,100,luton,luton,no,
 Peterborough UA,domestic-E06000031-Peterborough,100,peterborough,peterborough,no,
 Southend-on-Sea UA,domestic-E06000033-Southend-on-Sea,100,southend on sea,southend on sea,no,
-Thurrock UA,(conflict -> winner: Thurrock UA),100,thurrock,thurrock,yes,conflict
+Thurrock UA,domestic-E06000034-Thurrock,100,thurrock,thurrock,no,
 Cambridge,domestic-E07000008-Cambridge,100,cambridge,cambridge,no,
 East Cambridgeshire,domestic-E07000009-East-Cambridgeshire,100,east cambridgeshire,east cambridgeshire,no,
 Fenland,domestic-E07000010-Fenland,100,fenland,fenland,no,
@@ -182,12 +182,12 @@ North Norfolk,domestic-E07000147-North-Norfolk,100,north norfolk,north norfolk,n
 Norwich,domestic-E07000148-Norwich,100,norwich,norwich,no,
 South Norfolk,domestic-E07000149-South-Norfolk,100,south norfolk,south norfolk,no,
 Babergh,domestic-E07000200-Babergh,100,babergh,babergh,no,
-Forest Heath,(conflict -> winner: Waltham Forest),77,forest heath,waltham forest,yes,conflict
+Forest Heath,domestic-E07000245-West-Suffolk,override,forest heath,west suffolk,no,merge_override
 Ipswich,domestic-E07000202-Ipswich,100,ipswich,ipswich,no,
 Mid Suffolk,domestic-E07000203-Mid-Suffolk,100,mid suffolk,mid suffolk,no,
-St Edmundsbury,(conflict -> winner: West Lindsey),54,st edmundsbury,west lindsey,yes,conflict
-Suffolk Coastal,domestic-E07000244-East-Suffolk,81,suffolk coastal,east suffolk,yes,low_confidence
-Waveney,(conflict -> winner: Waverley),80,waveney,waverley,yes,conflict
+St Edmundsbury,domestic-E07000245-West-Suffolk,override,st edmundsbury,west suffolk,no,merge_override
+Suffolk Coastal,domestic-E07000244-East-Suffolk,override,suffolk coastal,east suffolk,no,merge_override
+Waveney,domestic-E07000244-East-Suffolk,override,waveney,east suffolk,no,merge_override
 Camden,domestic-E09000007-Camden,100,camden,camden,no,
 City of London,domestic-E09000001-City-of-London,100,london,london,no,
 Hackney,domestic-E09000012-Hackney,100,hackney,hackney,no,
@@ -220,11 +220,11 @@ Merton,domestic-E09000024-Merton,100,merton,merton,no,
 Redbridge,domestic-E09000026-Redbridge,100,redbridge,redbridge,no,
 Richmond upon Thames,domestic-E09000027-Richmond-upon-Thames,100,richmond upon thames,richmond upon thames,no,
 Sutton,domestic-E09000029-Sutton,100,sutton,sutton,no,
-Waltham Forest,(conflict -> winner: Waltham Forest),100,waltham forest,waltham forest,yes,conflict
+Waltham Forest,domestic-E09000031-Waltham-Forest,100,waltham forest,waltham forest,no,
 Bracknell Forest UA,domestic-E06000036-Bracknell-Forest,100,bracknell forest,bracknell forest,no,
 Brighton and Hove UA,domestic-E06000043-Brighton-and-Hove,100,brighton and hove,brighton and hove,no,
 Isle of Wight UA,domestic-E06000046-Isle-of-Wight,100,isle of wight,isle of wight,no,
-Medway UA,(conflict -> winner: Medway UA),100,medway,medway,yes,conflict
+Medway UA,domestic-E06000035-Medway,100,medway,medway,no,
 Milton Keynes UA,domestic-E06000042-Milton-Keynes,100,milton keynes,milton keynes,no,
 Portsmouth UA,domestic-E06000044-Portsmouth,100,portsmouth,portsmouth,no,
 Reading UA,domestic-E06000038-Reading,100,reading,reading,no,
@@ -260,7 +260,7 @@ Dover,domestic-E07000108-Dover,100,dover,dover,no,
 Gravesham,domestic-E07000109-Gravesham,100,gravesham,gravesham,no,
 Maidstone,domestic-E07000110-Maidstone,100,maidstone,maidstone,no,
 Sevenoaks,domestic-E07000111-Sevenoaks,100,sevenoaks,sevenoaks,no,
-Shepway,(conflict -> winner: Medway UA),62,shepway,medway,yes,conflict
+Shepway,domestic-E07000112-Folkestone-and-Hythe,override,shepway,folkestone and hythe,no,merge_override
 Swale,domestic-E07000113-Swale,100,swale,swale,no,
 Thanet,domestic-E07000114-Thanet,100,thanet,thanet,no,
 Tonbridge and Malling,domestic-E07000115-Tonbridge-and-Malling,100,tonbridge and malling,tonbridge and malling,no,
@@ -279,7 +279,7 @@ Runnymede,domestic-E07000212-Runnymede,100,runnymede,runnymede,no,
 Spelthorne,domestic-E07000213-Spelthorne,100,spelthorne,spelthorne,no,
 Surrey Heath,domestic-E07000214-Surrey-Heath,100,surrey heath,surrey heath,no,
 Tandridge,domestic-E07000215-Tandridge,100,tandridge,tandridge,no,
-Waverley,(conflict -> winner: Waverley),100,waverley,waverley,yes,conflict
+Waverley,domestic-E07000216-Waverley,100,waverley,waverley,no,
 Woking,domestic-E07000217-Woking,100,woking,woking,no,
 Adur,domestic-E07000223-Adur,100,adur,adur,no,
 Arun,domestic-E07000224-Arun,100,arun,arun,no,
@@ -289,13 +289,13 @@ Horsham,domestic-E07000227-Horsham,100,horsham,horsham,no,
 Mid Sussex,domestic-E07000228-Mid-Sussex,100,mid sussex,mid sussex,no,
 Worthing,domestic-E07000229-Worthing,100,worthing,worthing,no,
 Bath and North East Somerset UA,domestic-E06000022-Bath-and-North-East-Somerset,100,bath and north east somerset,bath and north east somerset,no,
-Bournemouth UA,(conflict -> winner: Christchurch),74,bournemouth,bournemouth christchurch and poole,yes,conflict
+Bournemouth UA,domestic-E06000058-Bournemouth-Christchurch-and-Poole,override,bournemouth,bournemouth christchurch and poole,no,merge_override
 "Bristol, City of UA",domestic-E06000023-Bristol-City-of,100,bristol,bristol,no,
 Cornwall UA,domestic-E06000052-Cornwall,100,cornwall,cornwall,no,
 Isles of Scilly UA,domestic-E06000053-Isles-of-Scilly,100,isles of scilly,isles of scilly,no,
 North Somerset UA,domestic-E06000024-North-Somerset,100,north somerset,north somerset,no,
 Plymouth UA,domestic-E06000026-Plymouth,100,plymouth,plymouth,no,
-Poole UA,(conflict -> winner: Christchurch),63,poole,bournemouth christchurch and poole,yes,conflict
+Poole UA,domestic-E06000058-Bournemouth-Christchurch-and-Poole,override,poole,bournemouth christchurch and poole,no,merge_override
 South Gloucestershire UA,domestic-E06000025-South-Gloucestershire,100,south gloucestershire,south gloucestershire,no,
 Swindon UA,domestic-E06000030-Swindon,100,swindon,swindon,no,
 Torbay UA,domestic-E06000027-Torbay,100,torbay,torbay,no,
@@ -308,12 +308,12 @@ South Hams,domestic-E07000044-South-Hams,100,south hams,south hams,no,
 Teignbridge,domestic-E07000045-Teignbridge,100,teignbridge,teignbridge,no,
 Torridge,domestic-E07000046-Torridge,100,torridge,torridge,no,
 West Devon,domestic-E07000047-West-Devon,100,west devon,west devon,no,
-Christchurch,(conflict -> winner: Christchurch),76,christchurch,bournemouth christchurch and poole,yes,conflict
-East Dorset,(conflict -> winner: East Dorset),85,east dorset,dorset,yes,conflict
-North Dorset,(conflict -> winner: East Dorset),83,north dorset,dorset,yes,conflict
-Purbeck,(conflict -> winner: Thurrock UA),53,purbeck,thurrock,yes,conflict
-West Dorset,(conflict -> winner: East Dorset),85,west dorset,dorset,yes,conflict
-Weymouth and Portland,(conflict -> winner: South Holland),59,weymouth and portland,south holland,yes,conflict
+Christchurch,domestic-E06000058-Bournemouth-Christchurch-and-Poole,override,christchurch,bournemouth christchurch and poole,no,merge_override
+East Dorset,domestic-E06000059-Dorset,override,east dorset,dorset,no,merge_override
+North Dorset,domestic-E06000059-Dorset,override,north dorset,dorset,no,merge_override
+Purbeck,domestic-E06000059-Dorset,override,purbeck,dorset,no,merge_override
+West Dorset,domestic-E06000059-Dorset,override,west dorset,dorset,no,merge_override
+Weymouth and Portland,domestic-E06000059-Dorset,override,weymouth and portland,dorset,no,merge_override
 Cheltenham,domestic-E07000078-Cheltenham,100,cheltenham,cheltenham,no,
 Cotswold,domestic-E07000079-Cotswold,100,cotswold,cotswold,no,
 Forest of Dean,domestic-E07000080-Forest-of-Dean,100,forest of dean,forest of dean,no,

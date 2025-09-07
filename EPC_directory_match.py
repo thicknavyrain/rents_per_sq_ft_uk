@@ -24,12 +24,41 @@ def _():
     OUT_JSON = "area_to_epc_dir.json"
     OUT_CSV_REPORT = "area_to_epc_dir_report.csv"
 
-    # Optional: force specific mappings here if you already know the exact folder name.
+    # Optional: force specific one-to-one mappings here if you already know the exact folder name.
     # Keys are EXACT 'Area Name' strings from the CSV; values are directory names (as they appear under EPC_PARENT_DIR).
     MANUAL_OVERRIDES: Dict[str, str] = {
         # Example:
         # "Kingston upon Hull, City of": "domestic-E06000010-Kingston-upon-Hull-City-of",
         # "Bristol UA": "domestic-E06000023-Bristol,-City-of",
+    }
+
+    # Hard-coded MERGE overrides:
+    # Map each historical Area Name to (directory, clean_directory_key) of the new/merged authority.
+    MERGE_AREA_OVERRIDES: Dict[str, Tuple[str, str]] = {
+        # Bournemouth, Christchurch, Poole
+        "Bournemouth UA": ("domestic-E06000058-Bournemouth-Christchurch-and-Poole", "bournemouth christchurch and poole"),
+        "Christchurch": ("domestic-E06000058-Bournemouth-Christchurch-and-Poole", "bournemouth christchurch and poole"),
+        "Poole UA": ("domestic-E06000058-Bournemouth-Christchurch-and-Poole", "bournemouth christchurch and poole"),
+
+        # Dorset unitary
+        "East Dorset": ("domestic-E06000059-Dorset", "dorset"),
+        "North Dorset": ("domestic-E06000059-Dorset", "dorset"),
+        "Purbeck": ("domestic-E06000059-Dorset", "dorset"),
+        "West Dorset": ("domestic-E06000059-Dorset", "dorset"),
+        "Weymouth and Portland": ("domestic-E06000059-Dorset", "dorset"),
+
+        # West Suffolk
+        "Forest Heath": ("domestic-E07000245-West-Suffolk", "west suffolk"),
+        "St Edmundsbury": ("domestic-E07000245-West-Suffolk", "west suffolk"),
+
+        # East Suffolk
+        "Suffolk Coastal": ("domestic-E07000244-East-Suffolk", "east suffolk"),
+        "Waveney": ("domestic-E07000244-East-Suffolk", "east suffolk"),
+
+        # Shepway → Folkestone and Hythe (add a couple of common variants for safety)
+        "Shepway council": ("domestic-E07000112-Folkestone-and-Hythe", "folkestone and hythe"),
+        "Shepway Council": ("domestic-E07000112-Folkestone-and-Hythe", "folkestone and hythe"),
+        "Shepway": ("domestic-E07000112-Folkestone-and-Hythe", "folkestone and hythe"),
     }
 
     # Matching confidence threshold (0–100).
@@ -43,14 +72,6 @@ def _():
     def clean_text(s: str) -> str:
         """
         Normalise an area or directory 'name' for robust matching.
-        - lower, strip
-        - remove codes/prefixes
-        - replace hyphens/underscores with spaces
-        - normalise ampersands and 'and'
-        - drop brackets text like '(met county)'
-        - remove ' ua', ' district', ' city of', trailing commas
-        - collapse whitespace
-        - normalise punctuation variants of apostrophes/commas
         """
         if s is None:
             return ""
@@ -88,8 +109,8 @@ def _():
             (r"\blondon borough of\b", " "),
             (r"\bborough council\b", " "),
             (r"\bcity of\b", " "),
-            (r"\bupon\b", " upon "),  # preserve “upon” but space it consistently
-            (r"\s+", " "),  # collapse spaces
+            (r"\bupon\b", " upon "),
+            (r"\s+", " "),
         ]
         for pat, repl in replacements:
             s1 = re.sub(pat, repl, s1, flags=re.IGNORECASE).strip()
@@ -132,8 +153,7 @@ def _():
     def build_clean_dir_index(epc_dirs: List[str]) -> Dict[str, str]:
         """
         Map cleaned name -> original directory name.
-        If collisions occur (two dirs clean to the same text), keep the longer directory name
-        (heuristic that often reflects more specific naming).
+        If collisions occur (two dirs clean to the same text), keep the longer directory name.
         """
         idx: Dict[str, str] = {}
         for d in epc_dirs:
@@ -151,8 +171,6 @@ def _():
         Return (matched_dirname, score, matched_clean_key) for the best match.
         """
         choices = list(clean_dir_index.keys())
-        # token_set_ratio is robust to extra/missing tokens; token_sort_ratio helps ordering differences.
-        # We'll combine two scorers by averaging.
         def scorer(a: str, b: str) -> int:
             return int((fuzz.token_set_ratio(a, b) + fuzz.token_sort_ratio(a, b)) / 2)
 
@@ -161,72 +179,128 @@ def _():
 
 
     def main():
+        # Pre-compute convenience lookups for merge handling
+        merge_areas_by_dir: Dict[str, set] = defaultdict(set)
+        merge_clean_key_by_dir: Dict[str, str] = {}
+        for area, (mdir, mclean) in MERGE_AREA_OVERRIDES.items():
+            merge_areas_by_dir[mdir].add(area)
+            merge_clean_key_by_dir[mdir] = mclean  # same clean key for all areas in that dir
+
         # Load inputs
         area_names = read_area_names(AREA_CSV)
         epc_dirs = list_epc_dirs(EPC_PARENT_DIR)
         clean_dir_index = build_clean_dir_index(epc_dirs)
 
         # Collect all claims (overrides + fuzzy) BEFORE deciding winners/conflicts
-        # Each claim: (area, dir_name, score, clean_area, matched_key, is_override)
-        claims: List[Tuple[str, str, int, str, str, bool]] = []
+        # Each claim: (area, dir_name, score, clean_area, matched_key, is_override, is_merge)
+        claims: List[Tuple[str, str, int, str, str, bool, bool]] = []
 
         for area in area_names:
-            if area in MANUAL_OVERRIDES:
+            if area in MERGE_AREA_OVERRIDES:
+                dir_name, forced_clean_key = MERGE_AREA_OVERRIDES[area]
+                if dir_name not in epc_dirs:
+                    raise ValueError(f"Merge override points to a non-existent directory: {dir_name}")
+                claims.append((area, dir_name, 1000, clean_text(area), forced_clean_key, True, True))
+            elif area in MANUAL_OVERRIDES:
                 dir_name = MANUAL_OVERRIDES[area]
                 if dir_name not in epc_dirs:
                     raise ValueError(f"Manual override points to a non-existent directory: {dir_name}")
-                claims.append((area, dir_name, 999, clean_text(area), clean_text(dir_name), True))
+                claims.append((area, dir_name, 999, clean_text(area), clean_text(dir_name), True, False))
             else:
                 clean_area = clean_text(area)
                 matched_dir, score, matched_key = best_match(clean_area, clean_dir_index)
-                claims.append((area, matched_dir, score, clean_area, matched_key, False))
+                claims.append((area, matched_dir, score, clean_area, matched_key, False, False))
 
         # Group claims by directory to detect conflicts
-        claims_by_dir: Dict[str, List[Tuple[str, int, str, str, bool]]] = defaultdict(list)
-        for area, dir_name, score, clean_area, matched_key, is_override in claims:
-            claims_by_dir[dir_name].append((area, score, clean_area, matched_key, is_override))
+        claims_by_dir: Dict[str, List[Tuple[str, int, str, str, bool, bool]]] = defaultdict(list)
+        for area, dir_name, score, clean_area, matched_key, is_override, is_merge in claims:
+            claims_by_dir[dir_name].append((area, score, clean_area, matched_key, is_override, is_merge))
 
-        # Determine winners per directory (highest score; overrides score as 999)
+        # Determine winners per directory (highest score; overrides score as 999/1000)
         winners_by_dir: Dict[str, str] = {}
         for dir_name, claim_list in claims_by_dir.items():
-            best = max(claim_list, key=lambda t: t[1])  # by score
+            best = max(claim_list, key=lambda t: t[1])
             winners_by_dir[dir_name] = best[0]  # area name
 
-        # Any directory with >1 claimant is a conflict; EXCLUDE ALL its claimants from final JSON
-        conflicted_dirs = {d for d, claim_list in claims_by_dir.items() if len(claim_list) > 1}
+        # Raw conflicts: directories with >1 claimant
+        raw_conflicted_dirs = {d for d, cl in claims_by_dir.items() if len(cl) > 1}
+
+        # Resolve conflicts with a UNIQUE perfect (score==100) non-override claimant (from fuzzy pass)
+        resolved_perfect_dirs: Dict[str, str] = {}
+        for d in raw_conflicted_dirs:
+            cl = claims_by_dir[d]
+            perfect_100 = [a for (a, sc, _ca, _mk, is_ovr, is_merge) in cl if (sc == 100 and not is_ovr and not is_merge)]
+            if len(perfect_100) == 1:
+                resolved_perfect_dirs[d] = perfect_100[0]
 
         # Build mapping and report
         mapping: Dict[str, Optional[str]] = {}
         report_rows: List[Dict[str, str]] = []
 
-        for area, dir_name, score, clean_area, matched_key, is_override in claims:
-            is_conflict = dir_name in conflicted_dirs
-            winner_area = winners_by_dir.get(dir_name)
-            # Keep low-confidence if NOT a conflict; exclude all conflicts (even the winner)
-            if not is_conflict:
-                mapping[area] = dir_name
-            else:
-                mapping[area] = None
+        for area, dir_name, score, clean_area, matched_key, is_override, is_merge in claims:
+            has_merge_claims_for_dir = any(c_is_merge for (_a, _sc, _ca, _mk, _io, c_is_merge) in claims_by_dir[dir_name])
 
-            needs_review = "yes" if (is_conflict or (not is_override and score < CONFIDENCE_THRESHOLD)) else "no"
-            if is_conflict:
-                matched_display = f"(conflict -> winner: {winner_area})"
-                note = "conflict"
+            if len(claims_by_dir[dir_name]) > 1:
+                # There are multiple claimants for this directory
+                if has_merge_claims_for_dir:
+                    # If this area is one of the declared merge areas for this dir -> keep it, no conflict
+                    if is_merge and area in merge_areas_by_dir.get(dir_name, set()):
+                        mapping[area] = dir_name
+                        is_conflict = False
+                        matched_display = dir_name
+                        note = "merge_override"
+                    else:
+                        # Non-merge claimant competing with a merge group -> exclude & mark conflict
+                        mapping[area] = None
+                        is_conflict = True
+                        winner_area = next(iter(merge_areas_by_dir.get(dir_name, []))) or winners_by_dir.get(dir_name)
+                        matched_display = f"(conflict -> winner: {winner_area})"
+                        note = "conflict"
+                else:
+                    # No merge claims here; apply unique score-100 resolution if present
+                    if dir_name in resolved_perfect_dirs:
+                        winner_area = resolved_perfect_dirs[dir_name]
+                        if area == winner_area:
+                            mapping[area] = dir_name
+                            is_conflict = False
+                            matched_display = dir_name
+                            note = "manual_override" if is_override else ("low_confidence" if score < CONFIDENCE_THRESHOLD else "")
+                        else:
+                            mapping[area] = None
+                            is_conflict = True
+                            matched_display = f"(conflict -> winner: {winner_area})"
+                            note = "conflict"
+                    else:
+                        # Unresolved conflict: exclude all
+                        mapping[area] = None
+                        is_conflict = True
+                        winner_area = winners_by_dir.get(dir_name)
+                        matched_display = f"(conflict -> winner: {winner_area})"
+                        note = "conflict"
             else:
+                # Single claimant for this directory -> keep
+                mapping[area] = dir_name
+                is_conflict = False
                 matched_display = dir_name
-                note = "manual_override" if is_override else ("low_confidence" if score < CONFIDENCE_THRESHOLD else "")
+                # Label merge overrides distinctly; otherwise normal override/low-confidence logic
+                if is_merge:
+                    note = "merge_override"
+                else:
+                    note = "manual_override" if is_override else ("low_confidence" if score < CONFIDENCE_THRESHOLD else "")
+
+            needs_review = "yes" if (is_conflict or (not is_merge and not is_override and score < CONFIDENCE_THRESHOLD)) else "no"
 
             report_rows.append({
                 "area_name": area,
                 "matched_directory": matched_display,
-                "score": "override" if is_override else str(score),
+                "score": "override" if (is_override or is_merge) else str(score),
                 "clean_area": clean_area,
                 "clean_directory_key": matched_key,
                 "needs_review": needs_review,
                 "note": note
             })
 
-        # Save JSON mapping (exclude conflicts and nulls)
+        # Save JSON mapping (include all non-null)
         final_mapping = {k: v for k, v in mapping.items() if v is not None}
         with open(OUT_JSON, "w", encoding="utf-8") as jf:
             json.dump(final_mapping, jf, ensure_ascii=False, indent=2)
@@ -245,7 +319,7 @@ def _():
         conflicts = sum(1 for r in report_rows if r["note"] == "conflict")
 
         print(f"Total areas: {total}")
-        print(f"Mapped (non-null, conflicts excluded): {matched}")
+        print(f"Mapped (non-null): {matched}")
         print(f"Flagged for review (low confidence or conflict): {needs_review_count}")
         print(f"Conflicts detected (area-claims): {conflicts}")
         print(f"Saved mapping -> {OUT_JSON}")

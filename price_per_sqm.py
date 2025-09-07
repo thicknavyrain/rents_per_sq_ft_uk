@@ -55,8 +55,11 @@ def _():
             best = process.extractOne(nm, rents_areas)
             if best:
                 match_name, score = best[0], best[1]
-                if score >= 90:
+                if score >= 80:
                     mapping.append({"Area name": nm, "Area Name (rents)": match_name, "score": score})
+                else:
+                    print(nm)
+                    print(match_name)
         map_df = pd.DataFrame(mapping)
 
         # Merge mapped names back to full rows
