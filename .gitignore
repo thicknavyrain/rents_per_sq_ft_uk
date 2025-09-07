@@ -16,3 +16,9 @@ EPC_data
 EPC_data/*
 LA_boundaries
 LA_boundaries/*
+LA_boundaries/
+*.shp
+*.dbf
+*.shx
+*.prj
+*.cpg
