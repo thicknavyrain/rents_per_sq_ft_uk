@@ -6,7 +6,12 @@ https://www.ons.gov.uk/economy/inflationandpriceindices/bulletins/privaterentand
 https://www.gov.uk/government/statistics/council-tax-stock-of-properties-2024
 - CTSOP 3.0 CSV tables: number of properties by Council Tax band, property type and administrative area, 1993 to 2024
 -- CTSOP3-0-1993-2024/CTSOP3_0_2024_03_31.csv
+--- In this project this file is kept in ./LA_bedroom_properties/raw/CTSOP3_0_2024_03_31.csv
 
 https://epc.opendatacommunities.org/domestic/search
 - Download all results (.zip)
+--- In this project, I named this directory as "EPC_data"
 
+https://geoportal.statistics.gov.uk/datasets/ons::local-authority-districts-may-2024-boundaries-uk-bfe-2/
+- Download options (Shapefile)
+--- In this project, this file is kept in ./LA_boundaries/LAD_MAY_2024_UK_BFE.shp 
