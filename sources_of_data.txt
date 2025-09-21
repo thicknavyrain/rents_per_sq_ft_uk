@@ -1,0 +1,12 @@
+https://www.ons.gov.uk/economy/inflationandpriceindices/bulletins/privaterentandhousepricesuk/september2025
+- Data Download from Figure 8
+-- datadownload.xlsx
+--- Remove first seven rows and save to csv (PIPR_data.csv)
+
+https://www.gov.uk/government/statistics/council-tax-stock-of-properties-2024
+- CTSOP 3.0 CSV tables: number of properties by Council Tax band, property type and administrative area, 1993 to 2024
+-- CTSOP3-0-1993-2024/CTSOP3_0_2024_03_31.csv
+
+https://epc.opendatacommunities.org/domestic/search
+- Download all results (.zip)
+
