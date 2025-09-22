@@ -9,7 +9,7 @@ def _():
     # compute_rental_floor_stats_by_bedrooms_updated.py
     #
     # Computes private-rental floor space stats (mean, std) by bedroom count for each LA.
-    # It uses the new 6+ category contingency tables as input but aggregates them to
+    # It uses the 6+ category contingency tables as input but aggregates them to
     # produce the final 4+ bedroom output format.
     #
     # Output:
@@ -31,7 +31,7 @@ def _():
     IPF_ROOT = "ipf_outputs"
 
     # Define the INPUT and OUTPUT bedroom columns separately
-    IPF_BEDROOM_COLS = ["1", "2", "3", "4", "5", "6+"] # How they appear in the new contingency tables
+    IPF_BEDROOM_COLS = ["1", "2", "3", "4", "5", "6+"] # How they appear in contingency tables
     OUTPUT_BEDROOM_BANDS = ["1", "2", "3", "4+"]      # The desired columns for the final output
     PTYPES = ["Bungalow", "Flat/Maisonette", "House : Detached", "House : Semi-Detached", "House : Terraced"]
 

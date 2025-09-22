@@ -35,7 +35,7 @@ def _():
     def create_ecode_to_dir_map(parent_dir: str) -> dict:
         """Scans a directory and maps extracted ecodes to their full directory names."""
         if not os.path.isdir(parent_dir):
-            print(f"❌ Error: EPC parent directory not found at '{parent_dir}'")
+            print(f"Error: EPC parent directory not found at '{parent_dir}'")
             return {}
         ecode_map = {}
         pattern = re.compile(r"^domestic-([A-Z0-9]+)-", re.IGNORECASE)
@@ -57,7 +57,7 @@ def _():
         try:
             df = pd.read_csv(AREA_CSV)
         except FileNotFoundError:
-            print(f"❌ Error: Input CSV not found at '{AREA_CSV}'.")
+            print(f"Error: Input CSV not found at '{AREA_CSV}'.")
             return
 
         final_mapping = {}
@@ -67,7 +67,7 @@ def _():
         for _, row in df.iterrows():
             area_name = row['area_name']
             ecode = row['ecode']
-        
+
             # 1. First, try to match by the unique ecode
             if ecode in ecode_to_dir:
                 final_mapping[area_name] = ecode_to_dir[ecode]
@@ -77,21 +77,21 @@ def _():
             # 3. If both fail, it's a true mismatch
             else:
                 unmatched_areas[area_name] = ecode
-    
+
         with open(OUT_JSON, "w", encoding="utf-8") as jf:
             json.dump(final_mapping, jf, ensure_ascii=False, indent=2)
 
-        print(f"✅ Success! Created mapping for {len(final_mapping)} areas.")
+        print(f"Success! Created mapping for {len(final_mapping)} areas.")
         print(f"--> Saved to {OUT_JSON}\n")
 
         # --- MISMATCH REPORT ---
         print("--- Mismatch Report ---")
         if unmatched_areas:
-            print(f"\n⚠️ Found {len(unmatched_areas)} areas in the CSV with no matching EPC directory:")
+            print(f"\nFound {len(unmatched_areas)} areas in the CSV with no matching EPC directory:")
             for name, code in unmatched_areas.items():
                 print(f"  - {name} (ecode: {code})")
         else:
-            print("✅ All areas in the CSV were successfully matched to an EPC directory.")
+            print("All areas in the CSV were successfully matched to an EPC directory.")
 
         # Find EPC directories that were not used in any mapping
         used_dirs = set(final_mapping.values())
@@ -99,11 +99,11 @@ def _():
         unmatched_epc_dirs = all_epc_dirs - used_dirs
 
         if unmatched_epc_dirs:
-            print(f"\n⚠️ Found {len(unmatched_epc_dirs)} EPC directories with no matching area in the CSV:")
+            print(f"\nFound {len(unmatched_epc_dirs)} EPC directories with no matching area in the CSV:")
             for dirname in sorted(list(unmatched_epc_dirs)):
                 print(f"  - {dirname}")
         else:
-            print("✅ All EPC directories were successfully matched to an area in the CSV.")
+            print("All EPC directories were successfully matched to an area in the CSV.")
 
     if __name__ == "__main__":
         main()

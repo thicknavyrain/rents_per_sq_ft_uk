@@ -25,7 +25,7 @@ def _():
     import numpy as np
     from fuzzywuzzy import process
 
-    RENTS_CSV = "outputs/rental_floor_stats_by_bedrooms.csv"
+    RENTAL_CSV = "outputs/rental_floor_stats_by_bedrooms.csv"
     PIPR_CSV  = "PIPR_data/PIPR_data.csv"
     OUT_CSV   = "outputs/pipr_cost_per_m2.csv"
 
@@ -40,23 +40,23 @@ def _():
         return out
 
     def main():
-        rents = pd.read_csv(RENTS_CSV)
+        rental = pd.read_csv(RENTAL_CSV)
         pipr  = pd.read_csv(PIPR_CSV)
 
-        rents.columns = [c.strip() for c in rents.columns]
+        rental.columns = [c.strip() for c in rental.columns]
         pipr.columns  = [c.strip() for c in pipr.columns]
 
-        rents_areas = sorted(set(rents["Area Name"].astype(str).str.strip()))
+        rental_areas = sorted(set(rental["Area Name"].astype(str).str.strip()))
         pipr_areas  = sorted(set(pipr["Area name"].astype(str).str.strip()))
 
-        # Fuzzy match PIPR -> rents (score >= 90)
+        # Fuzzy match PIPR Local Authority names -> rental properties dataset names (score >= 90)
         mapping = []
         for nm in pipr_areas:
-            best = process.extractOne(nm, rents_areas)
+            best = process.extractOne(nm, rental_areas)
             if best:
                 match_name, score = best[0], best[1]
                 if score >= 80:
-                    mapping.append({"Area name": nm, "Area Name (rents)": match_name, "score": score})
+                    mapping.append({"Area name": nm, "Area Name (rental)": match_name, "score": score})
                 else:
                     print(nm)
                     print(match_name)
@@ -64,8 +64,8 @@ def _():
 
         # Merge mapped names back to full rows
         pipr_m = pipr.merge(map_df, on="Area name", how="inner")
-        rents_m = rents.rename(columns={"Area Name": "Area Name (rents)"})
-        df = pipr_m.merge(rents_m, on="Area Name (rents)", how="left")
+        rental_m = rental.rename(columns={"Area Name": "Area Name (rental)"})
+        df = pipr_m.merge(rental_m, on="Area Name (rental)", how="left")
 
         # Coerce numeric rent columns
         df["Rental price one bed"]           = to_num(df.get("Rental price one bed"))

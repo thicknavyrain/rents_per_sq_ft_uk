@@ -14,8 +14,6 @@ def _():
     #
     # Outputs:
     #   ipf_outputs/<sanitized_epc_directory_name>/<ptype>_contingency.csv
-    #
-    # Requires: pip install pandas numpy ipfn tqdm
 
     import os
     import re
@@ -73,19 +71,16 @@ def _():
         return "Other/Unknown"
 
     def load_epc_certificates(epc_file: str) -> pd.DataFrame:
-        """Loads EPC data, now robustly handling missing values in text columns."""
+        """Loads EPC data"""
         usecols = [
             "PROPERTY_TYPE", "BUILT_FORM", "LOCAL_AUTHORITY",
             "NUMBER_HABITABLE_ROOMS", "TOTAL_FLOOR_AREA",
         ]
         df = pd.read_csv(epc_file, usecols=usecols, low_memory=False)
 
-        # --- FIX ---
         # Convert key text columns to string type and fill any missing values (NaN)
-        # with an empty string. This prevents the '.strip()' error.
         df['PROPERTY_TYPE'] = df['PROPERTY_TYPE'].fillna('').astype(str)
         df['BUILT_FORM'] = df['BUILT_FORM'].fillna('').astype(str)
-        # -----------
 
         df["ONS_PTYPE"] = df.apply(lambda r: map_epc_to_ons_category(r["PROPERTY_TYPE"], r["BUILT_FORM"]), axis=1)
         df = df.dropna(subset=["NUMBER_HABITABLE_ROOMS"])
@@ -129,7 +124,7 @@ def _():
         H_vals = row_counts.index.tolist()
         m0 = np.ones((len(H_vals), len(BEDROOM_COLS)), dtype=float)
 
-        # Create a mask where Habitable Rooms (H) is less than Bedrooms (B)
+        # Create a mask where Habitable Rooms (H) is equal to or less than Bedrooms (B)
         H_numeric = np.array(H_vals, dtype=int)
         B_numeric = np.array([1, 2, 3, 4, 5, 6], dtype=int)  # Treat '6+' as 6 for this comparison
         mask = (H_numeric[:, None] < B_numeric[None, :])
@@ -211,7 +206,7 @@ def _():
                 row_counts = p_df.groupby("H").size().sort_index()
                 if row_counts.sum() == 0:
                     continue
-            
+
                 total_rows = float(row_counts.sum())
                 total_cols = float(col_counts.sum())
                 col_counts_scaled = col_counts * (total_rows / total_cols)

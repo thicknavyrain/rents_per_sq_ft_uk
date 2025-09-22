@@ -1,0 +1,38 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.14.16"
+  },
+  "cells": [
+    {
+      "id": "Hbol",
+      "code_hash": "fd54e986fa4d434457eb1915d0be938a",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "/home/thicknavyrain/Documents/Data/YIMBY/rents_project/.venv/lib/python3.12/site-packages/fuzzywuzzy/fuzz.py:11: UserWarning: Using slow pure-python SequenceMatcher. Install python-Levenshtein to remove this warning\n  warnings.warn('Using slow pure-python SequenceMatcher. Install python-Levenshtein to remove this warning')\n"
+        },
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "Saved outputs/pipr_cost_per_m2.csv\n   Area code             Area name     cpm2_1     cpm2_2     cpm2_3  \\\n0  E07000223                  Adur  17.358501  19.505398  18.467669   \n1  E07000032          Amber Valley   9.901170  10.144401  10.711991   \n2  E07000224                  Arun  16.296199  17.546163  15.563827   \n3  E07000170              Ashfield   9.573598   9.384379   9.742004   \n4  E07000105               Ashford  14.790723  16.053194  15.822273   \n5  E07000200               Babergh  12.879918  12.746092  12.183186   \n6  E09000002  Barking and Dagenham  25.168919  24.940310  23.355175   \n7  E09000003                Barnet  30.580982  28.436643  22.749767   \n8  E08000038              Barnsley   8.403496   8.205371   8.777680   \n9  E07000066              Basildon  17.582014  18.747178  17.407212   \n\n   cpm2_4plus  cpm2_overall  \n0   19.665086     18.749164  \n1   11.756753     10.628579  \n2   15.981826     16.347004  \n3   11.473055     10.043259  \n4   16.848700     15.878723  \n5   12.273483     12.520670  \n6   27.766818     25.307806  \n7   22.924932     26.173081  \n8   10.390991      8.944384  \n9   18.973067     18.177368  \n"
+        }
+      ]
+    },
+    {
+      "id": "MJUe",
+      "code_hash": null,
+      "outputs": [],
+      "console": []
+    }
+  ]
+}

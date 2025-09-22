@@ -21,7 +21,7 @@ def _(os, pd):
     band_condition = df['band'] == 'All'
     filtered_df = df[laua_condition & band_condition].copy()
 
-    # Drop unnecessary columns (keeping 'ecode')
+    # Drop unnecessary columns 
     columns_to_drop = ['geography', 'ba_code', 'band', 'annexe', 'caravan_houseboat_mobilehome', 'unknown', 'all_properties']
     unkw_columns = [col for col in filtered_df.columns if col.endswith('_unkw')]
     columns_to_drop.extend(unkw_columns)
@@ -64,7 +64,6 @@ def _(os, pd):
 
 @app.cell
 def _():
-    
     return
 
 
